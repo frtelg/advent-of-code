@@ -1,5 +1,6 @@
-package org.franket.aoc2022;
+package org.franket.aoc2022.day1;
 
+import org.franket.aoc2022.AoCPuzzle;
 import org.franket.helpers.FileHelper;
 import org.franket.helpers.ListHelper;
 
@@ -8,17 +9,26 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Day1 {
-    public int solvePart1(String fileLocation) {
-        var caloriesPerElf = readAndGetCaloriesPerElf(fileLocation);
+public class Day1 implements AoCPuzzle {
+
+    private final String inputFileLocation;
+
+    public Day1(String inputFileLocation) {
+        this.inputFileLocation = inputFileLocation;
+    }
+
+    @Override
+    public int solvePart1() {
+        var caloriesPerElf = getCaloriesPerElfFromInputFile();
 
         return toIntStream(caloriesPerElf)
                 .max()
                 .orElse(0);
     }
 
-    public int solvePart2(String fileLocation) {
-        var caloriesPerElf = readAndGetCaloriesPerElf(fileLocation);
+    @Override
+    public int solvePart2() {
+        var caloriesPerElf = getCaloriesPerElfFromInputFile();
 
         return caloriesPerElf.stream()
                 .sorted(Comparator.reverseOrder())
@@ -27,8 +37,8 @@ public class Day1 {
                 .sum();
     }
 
-    private List<Integer> readAndGetCaloriesPerElf(String fileName) {
-        var fileLines = FileHelper.readLines(fileName)
+    private List<Integer> getCaloriesPerElfFromInputFile() {
+        var fileLines = FileHelper.readLines(inputFileLocation)
                 .toList();
 
         return getCaloriesPerElf(fileLines);
@@ -40,7 +50,7 @@ public class Day1 {
 
     private List<Integer> getCaloriesPerElf(List<String> remainingFileLines, List<Integer> caloriesPerElfCollector, int caloriesForCurrentElf) {
         if (remainingFileLines.isEmpty()) {
-            if (caloriesForCurrentElf > 0) return ListHelper.add(caloriesPerElfCollector, caloriesForCurrentElf);
+            if (caloriesForCurrentElf > 0) return ListHelper.append(caloriesPerElfCollector, caloriesForCurrentElf);
             return caloriesPerElfCollector;
         }
 
@@ -48,7 +58,7 @@ public class Day1 {
         var nextRemaining = remainingFileLines.subList(1, remainingFileLines.size());
 
         if (currentElement.isBlank()) {
-            return getCaloriesPerElf(nextRemaining, ListHelper.add(caloriesPerElfCollector, caloriesForCurrentElf), 0);
+            return getCaloriesPerElf(nextRemaining, ListHelper.append(caloriesPerElfCollector, caloriesForCurrentElf), 0);
         }
 
         var newCaloriesForCurrentElf = Integer.parseInt(currentElement) + caloriesForCurrentElf;

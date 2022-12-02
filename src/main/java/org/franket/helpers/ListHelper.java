@@ -1,16 +1,19 @@
 package org.franket.helpers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class ListHelper {
-    public static <T> List<T> addToStart(List<T> list, T element) {
-        return Stream.concat(Stream.of(element), list.stream())
+    @SafeVarargs
+    public static <T> List<T> prepend(List<T> list, T... elements) {
+        return Stream.concat(Arrays.stream(elements), list.stream())
                 .toList();
     }
 
-    public static <T> List<T> add(List<T> list, T element) {
-        return Stream.concat(list.stream(), Stream.of(element))
+    @SafeVarargs
+    public static <T> List<T> append(List<T> list, T... elements) {
+        return Stream.concat(list.stream(), Arrays.stream(elements))
                 .toList();
     }
 }
