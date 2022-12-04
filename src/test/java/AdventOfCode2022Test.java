@@ -2,6 +2,7 @@ import org.franket.aoc2022.day1.Day1;
 import org.franket.aoc2022.day2.Day2;
 import org.franket.aoc2022.day2.RockPaperScissorsChoice;
 import org.franket.aoc2022.day3.Day3;
+import org.franket.aoc2022.day4.Day4;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -77,19 +78,25 @@ class AdventOfCode2022Test {
     }
 
     @Test
-    void test() {
+    void day4_part1() {
+        var day4Example = new Day4("day4input_example.txt");
+        var result = day4Example.solvePart1();
 
-        char a = 'a';
-        char b = 'b';
-        char aUc = 'A';
+        assertEquals(2, result);
 
-        System.out.println(Character.getNumericValue(a));
-        System.out.println(Character.getNumericValue(aUc));
+        var day4 = new Day4("day4input.txt");
+        System.out.println(day4.solvePart1());
+    }
 
-        System.out.println((int) a);
-        System.out.println((int) b);
-        System.out.println((int) aUc);
+    @Test
+    void day4_part2() {
+        var day4Example = new Day4("day4input_example.txt");
+        var result = day4Example.solvePart2();
 
+        assertEquals(4, result);
+
+        var day4 = new Day4("day4input.txt");
+        System.out.println(day4.solvePart2());
     }
 
 }
