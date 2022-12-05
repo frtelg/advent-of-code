@@ -6,7 +6,7 @@ import org.franket.helpers.FileHelper;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Day4 implements AoCPuzzle {
+public class Day4 implements AoCPuzzle<Integer> {
     private final String inputFileLocation;
 
     public Day4(String inputFileLocation) {
@@ -14,7 +14,7 @@ public class Day4 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart1() {
+    public Integer solvePart1() {
         return (int) FileHelper.readLines(inputFileLocation)
                 .map(this::toAssignmentPair)
                 .filter(AssignmentPair::hasFullOverlap)
@@ -22,7 +22,7 @@ public class Day4 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart2() {
+    public Integer solvePart2() {
         return (int) FileHelper.readLines(inputFileLocation)
                 .map(this::toAssignmentPair)
                 .filter(AssignmentPair::hasPartialOverlap)

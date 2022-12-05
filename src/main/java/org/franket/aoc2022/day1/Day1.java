@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Day1 implements AoCPuzzle {
+public class Day1 implements AoCPuzzle<Integer> {
 
     private final String inputFileLocation;
 
@@ -18,7 +18,7 @@ public class Day1 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart1() {
+    public Integer solvePart1() {
         var caloriesPerElf = getCaloriesPerElfFromInputFile();
 
         return toIntStream(caloriesPerElf)
@@ -27,7 +27,7 @@ public class Day1 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart2() {
+    public Integer solvePart2() {
         var caloriesPerElf = getCaloriesPerElfFromInputFile();
 
         return caloriesPerElf.stream()

@@ -3,6 +3,7 @@ import org.franket.aoc2022.day2.Day2;
 import org.franket.aoc2022.day2.RockPaperScissorsChoice;
 import org.franket.aoc2022.day3.Day3;
 import org.franket.aoc2022.day4.Day4;
+import org.franket.aoc2022.day5.Day5;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -97,6 +98,28 @@ class AdventOfCode2022Test {
 
         var day4 = new Day4("day4input.txt");
         System.out.println(day4.solvePart2());
+    }
+
+    @Test
+    void day5_part1() {
+        var day5Example = new Day5("day5input_example.txt");
+        var result = day5Example.solvePart1();
+
+        assertEquals("CMZ", result);
+
+        var day5 = new Day5("day5input.txt");
+        System.out.println(day5.solvePart1());
+    }
+
+    @Test
+    void day5_part2() {
+        var day5Example = new Day5("day5input_example.txt");
+        var result = day5Example.solvePart2();
+
+        assertEquals("MCD", result);
+
+        var day5 = new Day5("day5input.txt");
+        System.out.println(day5.solvePart2());
     }
 
 }

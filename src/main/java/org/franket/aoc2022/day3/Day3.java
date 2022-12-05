@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Day3 implements AoCPuzzle {
+public class Day3 implements AoCPuzzle<Integer> {
 
     private final String inputFileLocation;
 
@@ -20,7 +20,7 @@ public class Day3 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart1() {
+    public Integer solvePart1() {
         return FileHelper.readLines(inputFileLocation)
                 .map(this::toRucksack)
                 .map(this::findMatchingChars)
@@ -29,7 +29,7 @@ public class Day3 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart2() {
+    public Integer solvePart2() {
         var fileLines = FileHelper.readLines(inputFileLocation)
                 .toList();
         var ruckSacksPer3Elves = partitionPer3(fileLines);

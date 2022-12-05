@@ -3,7 +3,7 @@ package org.franket.aoc2022.day2;
 import org.franket.aoc2022.AoCPuzzle;
 import org.franket.helpers.FileHelper;
 
-public class Day2 implements AoCPuzzle {
+public class Day2 implements AoCPuzzle<Integer> {
 
     private final String inputFileLocation;
 
@@ -12,7 +12,7 @@ public class Day2 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart1() {
+    public Integer solvePart1() {
         return FileHelper.readLines(inputFileLocation)
                 .map(this::toContest)
                 .mapToInt(this::getFullContestScore)
@@ -20,7 +20,7 @@ public class Day2 implements AoCPuzzle {
     }
 
     @Override
-    public int solvePart2() {
+    public Integer solvePart2() {
         return FileHelper.readLines(inputFileLocation)
                 .map(this::toContestWithDesiredOutcome)
                 .mapToInt(this::getFullContestScore)
