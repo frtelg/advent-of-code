@@ -4,9 +4,11 @@ import org.franket.aoc2022.day2.RockPaperScissorsChoice;
 import org.franket.aoc2022.day3.Day3;
 import org.franket.aoc2022.day4.Day4;
 import org.franket.aoc2022.day5.Day5;
+import org.franket.aoc2022.day6.Day6;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -120,6 +122,53 @@ class AdventOfCode2022Test {
 
         var day5 = new Day5("day5input.txt");
         System.out.println(day5.solvePart2());
+    }
+
+    @Test
+    void day6_part1() {
+        var day6Example1 = new Day6("day6input_example1.txt");
+        var result1 = day6Example1.solvePart1();
+
+        assertEquals(5, result1);
+
+        var day6Example2 = new Day6("day6input_example2.txt");
+        var result2 = day6Example2.solvePart1();
+
+        assertEquals(6, result2);
+
+        var day6Example3 = new Day6("day6input_example3.txt");
+        var result3 = day6Example3.solvePart1();
+
+        assertEquals(10, result3);
+
+        var day6Example4 = new Day6("day6input_example4.txt");
+        var result4 = day6Example4.solvePart1();
+
+        assertEquals(11, result4);
+
+        var day6 = new Day6("day6input.txt");
+        System.out.println(day6.solvePart1());
+    }
+
+    @Test
+    void day6_part2() {
+
+        var input = Map.of(
+                "day6input_example5.txt", 19,
+                "day6input_example6.txt", 23,
+                "day6input_example7.txt", 23,
+                "day6input_example8.txt", 29,
+                "day6input_example9.txt", 26
+        );
+
+        input.forEach((k, v) -> {
+            var day6Example = new Day6(k);
+            assertEquals(v, day6Example.solvePart2());
+        });
+
+        var day6 = new Day6("day6input.txt");
+
+        System.out.println(day6.solvePart2());
     }
 
 }
