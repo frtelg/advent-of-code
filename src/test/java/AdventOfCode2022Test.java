@@ -5,6 +5,7 @@ import org.franket.aoc2022.day3.Day3;
 import org.franket.aoc2022.day4.Day4;
 import org.franket.aoc2022.day5.Day5;
 import org.franket.aoc2022.day6.Day6;
+import org.franket.aoc2022.day7.Day7;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -169,6 +170,28 @@ class AdventOfCode2022Test {
         var day6 = new Day6("day6input.txt");
 
         System.out.println(day6.solvePart2());
+    }
+
+    @Test
+    void day7_part1() {
+        var day7Example = new Day7("day7input_example.txt");
+        var result = day7Example.solvePart1();
+
+        assertEquals(95437, result);
+
+        var day7 = new Day7("day7input.txt");
+        System.out.println(day7.solvePart1());
+    }
+
+    @Test
+    void day7_part2() {
+        var day7Example = new Day7("day7input_example.txt");
+        var result = day7Example.solvePart2();
+
+        assertEquals(24933642, result);
+
+        var day7 = new Day7("day7input.txt");
+        System.out.println(day7.solvePart2());
     }
 
 }
