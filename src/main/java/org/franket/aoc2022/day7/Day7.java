@@ -7,6 +7,7 @@ import org.franket.helpers.ListHelper;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Day7 implements AoCPuzzle<Integer> {
@@ -24,17 +25,13 @@ public class Day7 implements AoCPuzzle<Integer> {
 
         var items = getFileSystemItems(fileSystem, "", Collections.emptyList());
 
-        var directories = items.stream()
-                        .map(FileSystemItem::parentName)
-                        .collect(Collectors.toSet());
+        var directories = getAllDirectoryPaths(items);
 
         return directories.stream()
-                .map(d -> items.stream().filter(i -> i.parentName().startsWith(d)).toList())
-                .mapToInt(d -> d.stream().mapToInt(i -> i.size()).sum())
+                .mapToInt(d -> this.getDirectorySize(d, items))
                 .filter(i -> i <= 100000)
                 .sum();
     }
-
 
     @Override
     public Integer solvePart2() {
@@ -47,18 +44,16 @@ public class Day7 implements AoCPuzzle<Integer> {
                 .mapToInt(FileSystemItem::size)
                 .sum();
 
-        var currentFreeSpace = 70000000 - totalDiskUse;
-        var requiredFreeSpace = 30000000 - currentFreeSpace;
+        var currentFreeSpace = 70_000_000 - totalDiskUse;
+        var requiredFreeSpace = 30_000_000 - currentFreeSpace;
 
-        var directories = items.stream()
-                .map(FileSystemItem::parentName)
-                .collect(Collectors.toSet());
+        var directories = getAllDirectoryPaths(items);
 
         return directories.stream()
-                .map(d -> items.stream().filter(i -> i.parentName().startsWith(d)).toList())
-                .mapToInt(d -> d.stream().mapToInt(i -> i.size()).sum())
+                .mapToInt(d -> this.getDirectorySize(d, items))
                 .filter(i -> i >= requiredFreeSpace)
-                .min().orElse(0);
+                .min()
+                .orElse(0);
     }
 
     private List<FileSystemItem> getFileSystemItems(List<String> remaining, String currentStack, List<FileSystemItem> acc) {
@@ -129,7 +124,7 @@ public class Day7 implements AoCPuzzle<Integer> {
     private FileSystemItem parseDir(String line, String stack) {
         var dirName = line.split("\s+")[1].trim();
 
-        return new FileSystemItem(FileSystemItemType.DIRECTORY, dirName, stack, 0);
+        return new FileSystemItem(dirName, stack, 0);
     }
 
     private FileSystemItem parseFile(String line, String stack) {
@@ -137,11 +132,24 @@ public class Day7 implements AoCPuzzle<Integer> {
         var name = sizeAndName[1].trim();
         var size = Integer.parseInt(sizeAndName[0].trim());
 
-        return new FileSystemItem(FileSystemItemType.DIRECTORY, name, stack, size);
+        return new FileSystemItem(name, stack, size);
     }
 
     private String getUniversalStack(String stack) {
         if (stack.endsWith("/")) return stack.substring(0, stack.length() - 1);
         return stack;
+    }
+
+    private Set<String> getAllDirectoryPaths(List<FileSystemItem> fileSystem) {
+        return fileSystem.stream()
+                .map(FileSystemItem::parentName)
+                .collect(Collectors.toSet());
+    }
+
+    private int getDirectorySize(String path, List<FileSystemItem> fileSystemItems) {
+        return fileSystemItems.stream()
+                .filter(i -> i.parentName().startsWith(path))
+                .mapToInt(FileSystemItem::size)
+                .sum();
     }
 }
