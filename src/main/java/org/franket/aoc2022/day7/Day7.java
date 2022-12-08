@@ -9,8 +9,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.franket.helpers.StreamHelper.parallelNotAllowed;
-
 public class Day7 implements AoCPuzzle<Integer> {
 
     private final String inputFileLocation;

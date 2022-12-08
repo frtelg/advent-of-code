@@ -1,14 +1,13 @@
 import org.franket.aoc2022.day1.Day1;
 import org.franket.aoc2022.day2.Day2;
-import org.franket.aoc2022.day2.RockPaperScissorsChoice;
 import org.franket.aoc2022.day3.Day3;
 import org.franket.aoc2022.day4.Day4;
 import org.franket.aoc2022.day5.Day5;
 import org.franket.aoc2022.day6.Day6;
 import org.franket.aoc2022.day7.Day7;
+import org.franket.aoc2022.day8.Day8;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -192,6 +191,28 @@ class AdventOfCode2022Test {
 
         var day7 = new Day7("day7input.txt");
         System.out.println(day7.solvePart2());
+    }
+
+    @Test
+    void day8_part1() {
+        var day8Example = new Day8("day8input_example.txt");
+        var result = day8Example.solvePart1();
+
+        assertEquals(21, result);
+
+        var day8 = new Day8("day8input.txt");
+        System.out.println(day8.solvePart1());
+    }
+
+    @Test
+    void day8_part2() {
+        var day8Example = new Day8("day8input_example.txt");
+        var result = day8Example.solvePart2();
+
+        assertEquals(8, result);
+
+        var day8 = new Day8("day8input.txt");
+        System.out.println(day8.solvePart2());
     }
 
 }
