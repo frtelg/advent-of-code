@@ -2,7 +2,7 @@ package org.franket.aoc2022.day7;
 
 import org.franket.aoc2022.AoCPuzzle;
 import org.franket.helpers.FileHelper;
-import org.franket.helpers.ListHelper;
+import org.franket.helpers.CollectionsHelper;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -77,7 +77,7 @@ public class Day7 implements AoCPuzzle<Integer> {
             return getFileSystemItems(tail, currentStack, acc);
         }
 
-        return getFileSystemItems(tail, currentStack, ListHelper.append(acc, parseFileSystemItem(head, currentStack)));
+        return getFileSystemItems(tail, currentStack, CollectionsHelper.append(acc, parseFileSystemItem(head, currentStack)));
     }
 
     private boolean isNavigateToDirCommand(String line) {

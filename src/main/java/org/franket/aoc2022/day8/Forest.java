@@ -1,13 +1,10 @@
 package org.franket.aoc2022.day8;
 
-import org.franket.helpers.ListHelper;
+import org.franket.helpers.CollectionsHelper;
 
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
-import static org.franket.helpers.StreamHelper.parallelNotAllowed;
 
 public record Forest(DataGrid<Integer> trees) {
     public List<DataGridRecord<Integer>> getTreesVisibleFromOutside() {
@@ -26,9 +23,9 @@ public record Forest(DataGrid<Integer> trees) {
     }
 
     private int getScenicScoreForTree(DataGridRecord<Integer> tree) {
-        var leftTrees = ListHelper.reverseOrder(tree.left());
+        var leftTrees = CollectionsHelper.reverseOrder(tree.left());
         var rightTrees = tree.right();
-        var topTrees = ListHelper.reverseOrder(tree.top());
+        var topTrees = CollectionsHelper.reverseOrder(tree.top());
         var bottomTrees = tree.bottom();
 
         return countNumberOfVisibleTrees(tree, leftTrees) *

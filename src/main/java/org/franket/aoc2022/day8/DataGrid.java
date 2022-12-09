@@ -1,6 +1,6 @@
 package org.franket.aoc2022.day8;
 
-import org.franket.helpers.ListHelper;
+import org.franket.helpers.CollectionsHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +27,7 @@ public record DataGrid<T>(List<List<T>> rows) {
             throw new IllegalArgumentException("Supplied row does not have the right number of columns");
         }
 
-        return new DataGrid<>(ListHelper.append(rows, row));
+        return new DataGrid<>(CollectionsHelper.append(rows, row));
     }
 
     private T recordAt(int x, int y) {

@@ -2,7 +2,7 @@ package org.franket.aoc2022.day3;
 
 import org.franket.aoc2022.AoCPuzzle;
 import org.franket.helpers.FileHelper;
-import org.franket.helpers.ListHelper;
+import org.franket.helpers.CollectionsHelper;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -106,16 +106,16 @@ public class Day3 implements AoCPuzzle<Integer> {
     private List<List<String>> partitionPer3(List<String> remaining, List<List<String>> acc, List<String> currentPartition) {
         if (remaining.isEmpty()) {
             if (currentPartition.isEmpty()) return acc;
-            return ListHelper.append(acc, currentPartition);
+            return CollectionsHelper.append(acc, currentPartition);
         }
 
         var currentElem = remaining.get(0);
         boolean isPartitionFull = currentPartition.size() >= 3;
         var nextPartition = isPartitionFull ?
                 List.of(currentElem) :
-                ListHelper.append(currentPartition, currentElem);
+                CollectionsHelper.append(currentPartition, currentElem);
         var nextAcc = isPartitionFull ?
-                ListHelper.append(acc, currentPartition) :
+                CollectionsHelper.append(acc, currentPartition) :
                 acc;
 
         return partitionPer3(remaining.subList(1, remaining.size()), nextAcc, nextPartition);
